@@ -408,6 +408,71 @@ section.alt { background: var(--bg-soft); }
   margin-top: 14px;
 }
 
+/* ---------- Publications ---------- */
+.pub-list {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  margin-bottom: 44px;
+}
+
+.pub-entry {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 22px 26px;
+  background: var(--bg);
+}
+
+.pub-status {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.status-review {
+  color: #935a12;
+  background: rgba(184, 122, 20, 0.12);
+}
+
+.status-prep {
+  color: var(--accent);
+  background: rgba(53, 80, 126, 0.1);
+}
+
+.pub-entry h3 {
+  font-family: var(--serif);
+  font-size: 1.12rem;
+  color: var(--navy);
+  margin: 0 0 6px;
+  line-height: 1.4;
+}
+
+.pub-meta {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin: 0 0 10px;
+}
+
+.pub-desc {
+  font-size: 0.92rem;
+  color: var(--text);
+  margin: 0;
+}
+
+.patent-note h3 {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--navy);
+  margin: 0 0 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
 /* ---------- Awards / Patents ---------- */
 .honors-grid {
   display: grid;
