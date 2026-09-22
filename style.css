@@ -310,6 +310,20 @@ section.alt { background: var(--bg-soft); }
 .research-item.reverse .fig-col { order: 2; }
 .research-item.reverse .text-col { order: 1; }
 
+/* Stacked layout: full-width figure on top, text below — for dense/wide diagrams */
+.research-item.stacked {
+  grid-template-columns: 1fr;
+}
+.research-item.stacked .fig-col img {
+  width: 100%;
+  max-height: 620px;
+  object-fit: contain;
+  background: #fff;
+}
+.research-item.stacked .text-col {
+  margin-top: 8px;
+}
+
 .fig-col img {
   border-radius: 10px;
   border: 1px solid var(--border);
