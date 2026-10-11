@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Daehan Kim · 김대한 | Research Portfolio</title>
-<meta name="description" content="김대한(Daehan Kim) — Sungkyunkwan University, AI Systems Engineering. Multimodal sensing, wearable healthcare, and AI-driven semiconductor process research.">
+<meta name="description" content="김대한(Daehan Kim) — Sungkyunkwan University, AI Systems Engineering. Embedded firmware, multimodal sensing, wearable healthcare, and AI-driven semiconductor process research.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -21,6 +21,7 @@
     <ul class="nav-links" id="navLinks">
       <li><a href="#about">About</a></li>
       <li><a href="#education">Education</a></li>
+      <li><a href="#embedded">Embedded</a></li>
       <li><a href="#research">Research</a></li>
       <li><a href="#publications">Publications</a></li>
       <li><a href="#honors">Honors</a></li>
@@ -32,7 +33,7 @@
 <header class="hero">
   <div class="container hero-inner">
     <div>
-      <div class="eyebrow">Research Statement</div>
+      <div class="eyebrow">Embedded Firmware · Sensor Interface · Edge AI</div>
       <h1>Daehan Kim <span class="kr-name">김대한</span></h1>
       <p class="role">M.S. Student, Department of AI Systems Engineering</p>
       <p class="affiliation">Sungkyunkwan University · Advisor: Prof. Sangmin Won (원상민 교수님)</p>
@@ -40,7 +41,7 @@
         저는 하드웨어 수준의 센서 신호 분리, 웨어러블 생체 신호 수집, 그리고 AI 기반 예측·최적화를
         결합하여 <strong>지능형 멀티모달 센싱 시스템</strong>을 연구하고 있습니다. 촉각 인식용 스트레인·온도
         복합 센서 플랫폼부터 파킨슨병·삼킴장애를 모니터링하는 웨어러블 디바이스, 반도체 공정 조건을
-        역설계하는 AI 모델까지 — 센서 하드웨어와 머신러닝을 잇는 연구를 진행하고 있습니다.
+        역설계하는 AI 모델까지 — 센서 하드웨어와 머신러닝을 잇는 연구를 진행하고 있습니다. nRF52 기반 펌웨어, 센서 인터페이스, BLE 전송, 모바일 앱까지 전 구간을 직접 구현합니다.
       </p>
       <div class="hero-links">
         <a class="pill-link" href="mailto:your-email@example.com">Email</a>
@@ -87,6 +88,8 @@
           <span class="tag">Multimodal Sensing</span>
           <span class="tag">Flexible &amp; Wearable Sensors</span>
           <span class="tag">Embedded Systems (nRF / BLE)</span>
+          <span class="tag">Secure BLE DFU</span>
+          <span class="tag">Low-power Firmware</span>
           <span class="tag">Signal Processing</span>
           <span class="tag">Machine Learning</span>
           <span class="tag">Digital Healthcare</span>
@@ -97,7 +100,7 @@
   </div>
 </section>
 
-<section id="education" class="alt">
+<section id="education">
   <div class="container">
     <div class="section-head">
       <div class="section-num">Education</div>
@@ -123,10 +126,198 @@
   </div>
 </section>
 
+<section id="embedded" class="alt">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">Embedded Systems</div>
+      <h2>Embedded Firmware &amp; Sensor Interface</h2>
+      <p class="sub">nRF52832 기반 센서 구동 · 무선 전송 · 디버깅을 직접 개발하고, 센서에서 모바일 앱과 AI 분석까지 전 구간을 연결했습니다.</p>
+    </div>
+
+    <!-- System overview -->
+    <div class="embed-block">
+      <h3 class="embed-title">System Overview</h3>
+      <div class="flow">
+        <div class="flow-node">
+          <div class="flow-head">Sensors</div>
+          <ul class="flow-list">
+            <li><strong>IMU (LSM6DSL)</strong><span>SPI</span></li>
+            <li><strong>Microphone (SPH)</strong><span>PDM</span></li>
+            <li><strong>Vibration sensor (V2S)</strong><span>PDM</span></li>
+            <li><strong>Si-NM strain/temp sensor</strong><span>VGA · ADC</span></li>
+            <li><strong>Shutdown signal (P0.28)</strong><span>GPIO IRQ</span></li>
+          </ul>
+        </div>
+        <div class="flow-arrow" aria-hidden="true"></div>
+        <div class="flow-node flow-main">
+          <div class="flow-head">nRF52832 <small>nRF5 SDK · C</small></div>
+          <ul class="flow-bullets">
+            <li>센서 초기화 순서 · 설정 레지스터</li>
+            <li>Timer / PPI 기반 샘플링</li>
+            <li>GPIO 인터럽트 · 디바운스</li>
+            <li>Sleep / System OFF 저전력 제어</li>
+            <li>Secure BLE DFU Bootloader</li>
+            <li>BLE 패킷 전송 (Packet ID + timestamp)</li>
+            <li>Debug: J-Link breakpoint · RTT log · 유선 연결 error code 추적</li>
+          </ul>
+        </div>
+        <div class="flow-arrow flow-arrow-label" aria-hidden="true"><span>BLE</span></div>
+        <div class="flow-node">
+          <div class="flow-head">Mobile App</div>
+          <p class="flow-text">Android · iOS<br>수집 · 실시간 표시</p>
+          <div class="flow-head flow-head-sub">AI 분석</div>
+          <p class="flow-text">분류 · 특징 추출</p>
+        </div>
+      </div>
+
+      <div class="stat-row embed-stats">
+        <div class="stat-box">
+          <div class="num">0 / 44,357</div>
+          <div class="label">BLE 전송 누락 샘플 (50 Hz, Packet ID + timestamp 추적)</div>
+        </div>
+        <div class="stat-box">
+          <div class="num">≈ 39 ms</div>
+          <div class="label">BLE 왕복 지연 평균</div>
+        </div>
+        <div class="stat-box">
+          <div class="num">5.8 → 1.8 mA</div>
+          <div class="label">advertising 전류 (약 69% 감소)</div>
+        </div>
+      </div>
+      <p class="status-note">펌웨어 경험 없이 시작해 보드 예제·데이터시트로 학습하며, 센서 구동부터 앱·AI까지 전 구간을 직접 연결했습니다.</p>
+
+      <dl class="skills-grid">
+        <div><dt>Language</dt><dd>C (firmware), Python (AI)</dd></div>
+        <div><dt>MCU / SDK</dt><dd>nRF52832, nRF5 SDK, SEGGER Embedded Studio</dd></div>
+        <div><dt>Interface</dt><dd>SPI, PDM, GPIO interrupt, UART, BLE</dd></div>
+        <div><dt>Debug</dt><dd>J-Link breakpoint, RTT log, 반환값·error code 기반 단계별 추적</dd></div>
+        <div><dt>Boot / Update</dt><dd>Secure BLE DFU (서명 패키지만 허용)</dd></div>
+        <div><dt>Hardware</dt><dd>데이터시트 기반 초기화·단위 변환, 납땜, 디바이스 몰드 제작</dd></div>
+        <div><dt>App / AI</dt><dd>Android·iOS 앱, CWT + ConvNeXt 분류 모델</dd></div>
+      </dl>
+    </div>
+
+    <!-- Troubleshooting -->
+    <div class="embed-block">
+      <h3 class="embed-title">Firmware Troubleshooting</h3>
+      <p class="embed-sub">인캡 후 셧다운 오동작 — GPIO 인터럽트 경로 추적으로 PCB 재설계 없이 해결</p>
+      <div class="step-grid step-grid-5">
+        <div class="step-card">
+          <div class="step-no">① 증상</div>
+          <ul>
+            <li>삼킴장애 측정용 웨어러블을 몰딩(인캡)한 뒤 충격·시간 경과 시 동작 정지</li>
+            <li>BLE 탐색 불가</li>
+            <li>무선충전 코일 위에 올리면 재동작</li>
+          </ul>
+        </div>
+        <div class="step-card">
+          <div class="step-no">② 1차 가설 → 실패</div>
+          <ul>
+            <li>몰딩 중 납땜부 손상 의심</li>
+            <li>디바이스 재제작 + 펌웨어 일부 수정</li>
+            <li>→ 증상 동일</li>
+          </ul>
+        </div>
+        <div class="step-card">
+          <div class="step-no">③ 단서 · 접근</div>
+          <ul>
+            <li>"충전하면 다시 살아난다" → 고장이 아니라 저전력 진입 가능성</li>
+            <li>슬립 진입 경로와 웨이크업 소스를 추적</li>
+          </ul>
+        </div>
+        <div class="step-card">
+          <div class="step-no">④ 원인</div>
+          <ul>
+            <li>셧다운 신호용 P0.28 GPIO가 풀업 없이 falling-edge 인터럽트</li>
+            <li>ISR에서 Shipping_flag set → main loop에서 System OFF</li>
+            <li>정상 종료 경로라 반환값 성공 · 로그 미기록 가능</li>
+          </ul>
+        </div>
+        <div class="step-card">
+          <div class="step-no">⑤ 해결 · 검증</div>
+          <ul>
+            <li>내부 풀업 설정 + 일정 시간 유지 시에만 셧다운하는 디바운스</li>
+            <li>누름·낙하 시험에서 재발 없음</li>
+            <li>추가 제작 3대에서 동일 확인</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="compare">
+        <div class="compare-box">
+          <div class="compare-label">Before</div>
+          <code>P0.28: input, no pull → falling edge IRQ → Shipping_flag = true</code>
+          <code>main loop: Shipping_flag 확인 → System OFF 진입 (BLE 정지)</code>
+        </div>
+        <div class="compare-box compare-after">
+          <div class="compare-label">After</div>
+          <code>P0.28: internal pull-up 설정</code>
+          <code>신호가 일정 시간 유지될 때만 셧다운 (debounce)</code>
+          <code>→ 두 조치를 함께 적용해 오동작 재발 없음</code>
+        </div>
+      </div>
+
+      <div class="research-block" style="margin-top:20px;">
+        <h4>Outcome</h4>
+        <ul>
+          <li>펌웨어 수정만으로 문제를 해결해 PCB 재설계를 피함</li>
+          <li>함수 반환값·로그만으로 보이지 않는 문제를 입력 신호 → 인터럽트 → 메인 루프 → 전원 상태까지 실행 흐름으로 추적</li>
+          <li>증상을 세분화해 원인이 하드웨어·펌웨어 중 어디에 영향을 주는지 확인하는 디버깅 습관</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Secure DFU -->
+    <div class="embed-block">
+      <h3 class="embed-title">Secure BLE DFU Bootloader &amp; Low-power Firmware</h3>
+      <p class="embed-sub">서명된 펌웨어만 받는 무선 업데이트와 전력 상태 제어</p>
+
+      <div class="pipeline-label">Boot flow</div>
+      <div class="pipeline">
+        <div class="pipe-step"><strong>MBR</strong><span>전원 인가 후 첫 실행</span></div>
+        <div class="pipe-arrow" aria-hidden="true"></div>
+        <div class="pipe-step"><strong>Bootloader</strong><span>MBR·부트로더 영역 flash protect, DFU 모드 여부 · 유효한 앱 확인</span></div>
+        <div class="pipe-arrow" aria-hidden="true"></div>
+        <div class="pipe-step"><strong>Application</strong><span>센서 구동 · BLE 전송</span></div>
+      </div>
+
+      <div class="pipeline-label">Update pipeline</div>
+      <div class="pipeline">
+        <div class="pipe-step"><strong>Firmware 빌드</strong><span>.hex</span></div>
+        <div class="pipe-arrow" aria-hidden="true"></div>
+        <div class="pipe-step"><strong>DFU 패키지 생성</strong><span>.zip · 개인키 서명</span></div>
+        <div class="pipe-arrow" aria-hidden="true"></div>
+        <div class="pipe-step"><strong>BLE 무선 전송</strong><span>&nbsp;</span></div>
+        <div class="pipe-arrow" aria-hidden="true"></div>
+        <div class="pipe-step"><strong>서명 검증</strong><span>부트로더 공개키로 검증</span></div>
+      </div>
+
+      <div class="two-col-blocks">
+        <div class="research-block">
+          <h4>Secure DFU 적용</h4>
+          <ul>
+            <li>nRF5 SDK의 BLE Secure DFU 부트로더 적용</li>
+            <li>서명 키로 패키지를 만들고, 서명이 없거나 검증에 실패한 펌웨어는 받지 않도록 구성</li>
+            <li>몰딩된 측정 장치를 분해하지 않고 무선으로 펌웨어 업데이트</li>
+          </ul>
+        </div>
+        <div class="research-block">
+          <h4>Low-power firmware</h4>
+          <ul>
+            <li>인터럽트 기반 처리 + 유휴 구간 sleep</li>
+            <li>advertising 상태 전류 5.8 mA → 1.8 mA (약 69% 감소)</li>
+            <li>System OFF 진입 조건과 웨이크업 소스(무선충전) 경로를 직접 추적·수정</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="research">
   <div class="container">
     <div class="section-head">
-      <div class="section-num">02–04 · Research</div>
+      <div class="section-num">Research</div>
       <h2>Research Projects</h2>
       <p class="sub">센서 하드웨어, 임베디드 시스템, AI 모델링을 아우르는 세 가지 핵심 연구입니다.</p>
     </div>
@@ -165,6 +356,14 @@
             <li>센서 데이터 분석 및 전처리, 객체 인식 AI 모델 설계</li>
             <li>nRF Firmware / BLE / Android Application 개발</li>
             <li>저전력 펌웨어 최적화 및 실시간 객체 인식 구현</li>
+          </ul>
+        </div>
+
+        <div class="research-block">
+          <h4>Key Results</h4>
+          <ul>
+            <li>측정일·장치를 기록해 재수집하고, 날짜 분리 순환 평가 기준 테스트 정확도 95.7%</li>
+            <li>Hardware-level decoupling을 통한 멀티모달 신호 분리 및 AI 인식 성능 검증</li>
           </ul>
         </div>
 
@@ -304,8 +503,8 @@
 
         <div class="stat-row">
           <div class="stat-box">
-            <div class="num">R² 0.720</div>
-            <div class="label">FF · MAE 2.88 %p</div>
+            <div class="num">R² 0.718</div>
+            <div class="label">FF · MAE 2.89 %p</div>
           </div>
           <div class="stat-box">
             <div class="num">R² 0.906</div>
@@ -318,6 +517,23 @@
         </div>
 
         <div class="research-block" style="margin-top:18px;">
+          <h4>Model Performance</h4>
+          <ul>
+            <li>최종 모델로 Kernel Ridge 선정, LOCO validation으로 미학습 공정조건에 대한 일반화 성능 검증</li>
+            <li>FF: MAE 2.89 %p, R² = 0.718 &nbsp;/&nbsp; LW: MAE 140.31 nm, R² = 0.906</li>
+          </ul>
+        </div>
+
+        <div class="research-block">
+          <h4>Experimental Validation</h4>
+          <ul>
+            <li>Inverse prediction으로 도출한 6개 신규 공정조건을 실제 제작·검증</li>
+            <li>FF: MAE 0.45 %p / 평균 상대오차 1.00% &nbsp;/&nbsp; LW: MAE 39.21 nm / 평균 상대오차 2.83%</li>
+            <li>목표 형상을 실제 공정에서 평균 1–3% 수준의 상대오차로 구현</li>
+          </ul>
+        </div>
+
+        <div class="research-block">
           <h4>Outcome</h4>
           <ul>
             <li>Forward prediction부터 inverse condition recommendation, experimental validation까지 이어지는 end-to-end 공정 최적화 framework 구축</li>
