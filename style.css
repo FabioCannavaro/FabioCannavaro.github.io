@@ -717,6 +717,18 @@ section.alt { background: var(--bg-soft); }
   margin: 0 0 10px;
 }
 
+.pub-authors {
+  font-size: 0.88rem;
+  color: var(--text);
+  margin: 0 0 4px;
+}
+
+.pub-meta a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 .pub-desc {
   font-size: 0.92rem;
   color: var(--text);
