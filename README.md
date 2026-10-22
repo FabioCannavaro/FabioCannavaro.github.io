@@ -56,15 +56,6 @@ git push -u origin main
 
 몇 분 후 `https://<GitHub아이디>.github.io/<저장소이름>/`에서 접속할 수 있습니다.
 
-## 아직 채워야 할 부분
-
-`index.html`에서 아래 텍스트를 검색해 실제 정보로 교체하세요 (총 2곳: Hero 섹션, Contact 섹션).
-
-- `your-email@example.com` → 실제 이메일
-- `https://github.com/your-username` → GitHub 프로필 주소
-- `https://linkedin.com/in/your-profile` → LinkedIn 프로필 주소 (없으면 해당 버튼 `<a>` 태그를 통째로 삭제해도 됩니다)
-- `https://scholar.google.com/` → Google Scholar 프로필 주소 (없으면 마찬가지로 삭제 가능)
-
 ## 커스터마이징 팁
 
 - **색상**: `style.css` 최상단 `:root { ... }`의 `--navy`, `--accent` 값만 바꾸면 전체 톤이 바뀝니다.

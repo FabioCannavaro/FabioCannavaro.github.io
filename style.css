@@ -693,6 +693,11 @@ section.alt { background: var(--bg-soft); }
   background: rgba(184, 122, 20, 0.12);
 }
 
+.status-accepted {
+  color: #1f6b4a;
+  background: rgba(31, 107, 74, 0.12);
+}
+
 .status-prep {
   color: var(--accent);
   background: rgba(53, 80, 126, 0.1);
