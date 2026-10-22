@@ -10,7 +10,6 @@ portfolio-site/
 ├── style.css                  스타일 (색상/폰트는 :root 변수로 관리)
 ├── script.js                  모바일 메뉴 토글 등 간단한 JS
 ├── assets/
-│   ├── portfolio-daehan-kim.pdf   포트폴리오 PDF (다운로드 링크용)
 │   └── img/
 │       ├── profile.jpg
 │       ├── fig-sensing-1.jpg / fig-sensing-2.jpg
