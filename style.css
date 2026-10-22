@@ -723,6 +723,12 @@ section.alt { background: var(--bg-soft); }
   margin: 0 0 4px;
 }
 
+.pub-note {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin: 0 0 4px;
+}
+
 .pub-meta a {
   color: var(--accent);
   text-decoration: underline;
